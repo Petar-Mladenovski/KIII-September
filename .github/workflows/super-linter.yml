@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full git history for accurate changed files
+          fetch-depth: 0  
 
       - name: Lint Code Base
         uses: github/super-linter@v4
@@ -32,10 +32,10 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17'  # Match the Java version in your Dockerfile
+          java-version: '17'  
 
       - name: Build with Gradle
-        run: ./gradlew build  # Adjust this if using a different build tool
+        run: ./gradlew build 
 
   docker:
     runs-on: ubuntu-latest
@@ -59,6 +59,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .  # Use the root as context
+          context: .  
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/your-image-name:latest  # Update with your image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/kiii-september:latest 
