@@ -41,8 +41,8 @@ jobs:
           distribution: 'zulu'     
 
       - name: Build with Gradle
-        shell: cmd 
-        run: .\gradlew build  
+        shell: bash 
+        run: ./gradlew build  
 
   docker:
     runs-on: ubuntu-latest
