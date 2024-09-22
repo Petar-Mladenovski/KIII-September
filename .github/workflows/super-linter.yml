@@ -1,16 +1,11 @@
-# This workflow executes several linters on changed files based on languages used in your code base whenever
-# you push a code or open a pull request.
-#
-# You can adjust the behavior by modifying this file.
-# For more information, see:
-# https://github.com/github/super-linter
-name: Lint Code Base
+name: Lint and Build Docker Image
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -18,8 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+          fetch-depth: 0  # Full git history for accurate changed files
 
       - name: Lint Code Base
         uses: github/super-linter@v4
@@ -27,13 +21,29 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  docker:
+
+  build:
     runs-on: ubuntu-latest
     needs: run-lint
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-    
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # Match the Java version in your Dockerfile
+
+      - name: Build with Gradle
+        run: ./gradlew build  # Adjust this if using a different build tool
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -49,6 +59,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: "./KIIISeptember/KIIISeptember"
+          context: .  # Use the root as context
           push: true
-          tags: petarmladenovski/kiii-september:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/your-image-name:latest  # Update with your image name
