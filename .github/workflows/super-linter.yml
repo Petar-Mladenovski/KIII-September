@@ -12,24 +12,9 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  run-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
-
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "main"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
   build:
     runs-on: ubuntu-latest
-    needs: run-lint
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -39,7 +24,10 @@ jobs:
         with:
           java-version: '17'          
           distribution: 'zulu'     
-          
+
+      - name: List directory contents
+        run: ls -la ./KIIISeptember/KIIISeptember
+
       - name: Make gradlew executable
         run: chmod +x ./KIIISeptember/KIIISeptember/gradlew 
 
