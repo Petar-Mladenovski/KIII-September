@@ -39,10 +39,13 @@ jobs:
         with:
           java-version: '17'          
           distribution: 'zulu'     
+          
+      - name: Make gradlew executable
+        run: chmod +x ./KIIISeptember/KIIISeptember/gradlew 
 
       - name: Build with Gradle
-        shell: bash 
-        run:  ./KIIISeptember/KIIISeptember/gradlew build  
+        shell: bash
+        run: ./KIIISeptember/KIIISeptember/gradlew build 
 
   docker:
     runs-on: ubuntu-latest
