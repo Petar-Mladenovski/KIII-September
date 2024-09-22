@@ -43,6 +43,9 @@ jobs:
       - name: List KIIISeptember directory contents
         run: ls -la ./KIIISeptember/KIIISeptember
 
+      - name: List build/libs directory
+        run: ls -la ./KIIISeptember/KIIISeptember/build
+
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
@@ -57,6 +60,9 @@ jobs:
         run: |
           cd ./KIIISeptember/KIIISeptember
           ./gradlew build --info
+          
+      - name: List build/libs directory
+        run: ls -la ./KIIISeptember/KIIISeptember/build
       - name: List build/libs directory
         run: ls -la ./KIIISeptember/KIIISeptember/build/libs
 
