@@ -39,7 +39,7 @@ jobs:
 
       - name: Build with Gradle
         shell: bash
-        run: ./KIIISeptember/KIIISeptember/gradlew build 
+        run: ./KIIISeptember/KIIISeptember/gradlew build --info
 
   docker:
     runs-on: ubuntu-latest
