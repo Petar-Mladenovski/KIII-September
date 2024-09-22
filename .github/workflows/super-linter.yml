@@ -85,6 +85,9 @@ jobs:
       - name: List ./KIIISeptember/KIIISeptember
         run: ls -la ./KIIISeptember/KIIISeptember
 
+      - name: List ./KIIISeptember/KIIISeptember/build
+        run: ls -la ./KIIISeptember/KIIISeptember/build
+
       - name: List build/libs directory
         run: ls -la ./KIIISeptember/KIIISeptember/build/libs
 
