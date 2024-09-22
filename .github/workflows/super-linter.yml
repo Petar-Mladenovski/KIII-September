@@ -41,7 +41,8 @@ jobs:
           distribution: 'temurin'     
 
       - name: Build with Gradle
-        run: .\gradlew build 
+        shell: pwsh 
+        run: .\gradlew build  
 
   docker:
     runs-on: ubuntu-latest
