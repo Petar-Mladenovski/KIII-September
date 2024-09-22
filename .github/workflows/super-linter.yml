@@ -79,6 +79,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: List ./KIIISeptember
+        run: ls -la ./KIIISeptember
+        
+      - name: List ./KIIISeptember/KIIISeptember
+        run: ls -la ./KIIISeptember/KIIISeptember
+
+      - name: List build/libs directory
+        run: ls -la ./KIIISeptember/KIIISeptember/build/libs
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
