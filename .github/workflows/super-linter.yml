@@ -19,14 +19,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: List root directory contents
+        run: ls -la
+
+      - name: List KIIISeptember parrent directory contents
+        run: ls -la ./KIIISeptember
+        
+      - name: List KIIISeptember directory contents
+        run: ls -la ./KIIISeptember/KIIISeptember
+
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
           java-version: '17'          
           distribution: 'zulu'     
-
-      - name: List directory contents
-        run: ls -la ./KIIISeptember/KIIISeptember
 
       - name: Make gradlew executable
         run: chmod +x ./KIIISeptember/KIIISeptember/gradlew 
