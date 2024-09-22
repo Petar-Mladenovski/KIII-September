@@ -43,9 +43,6 @@ jobs:
       - name: List KIIISeptember directory contents
         run: ls -la ./KIIISeptember/KIIISeptember
 
-      - name: List build/libs directory
-        run: ls -la ./KIIISeptember/KIIISeptember/build
-
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
