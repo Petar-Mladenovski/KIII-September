@@ -38,10 +38,10 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'          
-          distribution: 'temurin'     
+          distribution: 'zulu'     
 
       - name: Build with Gradle
-        shell: pwsh 
+        shell: cmd 
         run: .\gradlew build  
 
   docker:
