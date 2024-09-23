@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  namespace: my-app-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: petarmladenovski/kiii-september:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATA_MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: application.properties
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: mongo-password

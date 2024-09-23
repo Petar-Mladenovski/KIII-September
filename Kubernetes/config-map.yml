@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: my-app-namespace
+data:
+  application.properties: |
+    spring.data.mongodb.uri=mongodb+srv://mongoDB:DIjffTip0REoQCRE@cluster0.zt9ps.mongodb.net/kiiidb
+    server.port=27017
